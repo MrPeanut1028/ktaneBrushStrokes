@@ -459,7 +459,7 @@ public class BrushStrokesScript : MonoBehaviour
                 }
             }
 
-            else if (Bomb.GetSerialNumberNumbers().Count() == 3)
+            else if (Bomb.GetSerialNumberNumbers().Count() == 4)
             {
                 firstNumber = Bomb.GetSerialNumberNumbers().First();
                 secondNumber = Bomb.GetSerialNumberNumbers().Skip(1).First();
