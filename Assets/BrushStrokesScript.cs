@@ -30,8 +30,8 @@ public class BrushStrokesScript : MonoBehaviour
     private readonly static string[] colorNames = { "red", "orange", "yellow", "lime", "green", "cyan", "sky", "blue", "purple", "magenta", "brown", "white", "gray", "black", "pink" };
     private int keyNum = 0;
 
-    private bool[,] gaps = { { false, false, false, false, false, false },  // horizontal lines
-                             { false, false, false, false, false, false },  // vertical lines
+    private bool[,] gaps = { { false, false, false, false, false, false },  // horizontal lines, in reading order
+                             { false, false, false, false, false, false },  // vertical lines, in reading order
                              { false, false, false, false, false, false },  // tl-br diagonals (there's only 4)
                              { false, false, false, false, false, false }   // tr-bl diagonals (there's only 4) 
                            };
@@ -42,7 +42,7 @@ public class BrushStrokesScript : MonoBehaviour
             { false, true, true, true, true, true },
             { false, false, false, false, false, false },
             { false, false, false, false, false, false }
-        },
+        },// 1st symbol
         {
             { true, true, false, false, false, true },
             { true, true, true, true, true, true },
@@ -54,7 +54,7 @@ public class BrushStrokesScript : MonoBehaviour
             { true, true, true, true, true, true },
             { false, false, false, false, false, false },
             { false, false, false, false, false, false }
-        },
+        },// 3rd symbol
         {
             { true, true, true, false, true, false },
             { false, true, true, true, true, true },
@@ -66,7 +66,7 @@ public class BrushStrokesScript : MonoBehaviour
             { false, false, true, true, false, false },
             { false, false, false, false, false, false },
             { false, false, false, false, false, false }
-        },
+        },// 5th symbol
         {
             { true, true, false, false, true, true },
             { false, true, true, false, true, true },
@@ -78,7 +78,7 @@ public class BrushStrokesScript : MonoBehaviour
             { true, true, true, true, true, true },
             { false, false, false, false, false, false },
             { false, false, false, false, false, false }
-        },
+        },// 7th symbol
         {
             { true, true, true, true, true, true },
             { true, false, false, true, false, false },
@@ -90,7 +90,7 @@ public class BrushStrokesScript : MonoBehaviour
             { false, false, true, true, false, true },
             { false, false, false, false, false, false },
             { false, false, false, false, false, false }
-        },
+        },// 9th symbol
         {
             { true, true, true, true, false, false },
             { true, false, false, true, false, false },
@@ -102,7 +102,7 @@ public class BrushStrokesScript : MonoBehaviour
             { false, false, false, false, false, false },
             { true, false, false, true, false, false },
             { false, true, true, false, false, false }
-        },
+        },// 11th symbol
         {
             { true, true, false, false, true, true },
             { false, false, false, false, false, false },
@@ -114,7 +114,7 @@ public class BrushStrokesScript : MonoBehaviour
             { false, false, true, false, false, false },
             { true, false, false, true, false, false },
             { false, false, false, false, false, false }
-        },
+        },// 13th symbol
         {
             { true, true, true, true, false, false },
             { true, false, false, true, false, true },
@@ -126,7 +126,7 @@ public class BrushStrokesScript : MonoBehaviour
             { true, false, true, true, false, true },
             { false, false, false, false, false, false },
             { false, false, false, false, false, false }
-        },
+        },// 15th symbol
         {
             { true, true, true, true, true, true },
             { true, false, false, false, false, true },
@@ -138,7 +138,7 @@ public class BrushStrokesScript : MonoBehaviour
             { false, false, true, true, true, true },
             { false, false, false, false, false, false },
             { false, false, false, false, false, false }
-        },
+        },// 17th symbol
         {
             { false, false, false, false, true, true },
             { true, false, true, true, false, true },
@@ -150,7 +150,7 @@ public class BrushStrokesScript : MonoBehaviour
             { true, true, true, true, true, true },
             { false, false, false, false, false, false },
             { false, false, false, false, false, false }
-        },
+        },// 19th symbol
         {
             { true, true, false, false, true, true },
             { true, false, true, true, false, true },
@@ -162,7 +162,7 @@ public class BrushStrokesScript : MonoBehaviour
             { true, true, true, true, true, true },
             { false, false, false, false, false, false },
             { false, false, false, false, false, false }
-        },
+        },// 21st symbol
         {
             { true, true, true, true, true, true },
             { false, false, true, false, false, true },
@@ -174,7 +174,7 @@ public class BrushStrokesScript : MonoBehaviour
             { true, false, true, true, true, false },
             { false, false, false, false, false, false },
             { false, false, false, false, false, false }
-        },
+        },// 23rd symbol
         {
             { false, false, false, false, true, true },
             { true, true, true, true, true, true },
@@ -186,7 +186,7 @@ public class BrushStrokesScript : MonoBehaviour
             { false, true, false, true, false, true },
             { false, false, false, false, false, false },
             { false, false, false, false, false, false }
-        },
+        },// 25th symbol
         {
             { true, false, false, false, false, true },
             { true, true, true, true, true, true },
@@ -198,7 +198,7 @@ public class BrushStrokesScript : MonoBehaviour
             { true, true, true, true, true, true },
             { false, false, false, false, false, false },
             { false, false, false, false, false, false }
-        },
+        },// 27th symbol
         {
             { true, false, false, true, true, false },
             { true, true, true, true, true, true },
@@ -206,11 +206,11 @@ public class BrushStrokesScript : MonoBehaviour
             { false, false, false, false, false, false }
         },
         {
+            { true, true, false, false, true, false },
+            { false, true, true, true, true, true },
             { false, false, false, false, false, false },
-            { true, true, false, false, true, true },
-            { true, false, false, true, false, false },
             { false, false, false, false, false, false }
-        },
+        },// 29th symbol
         {
             { true, true, false, true, true, false },
             { true, false, false, true, true, true },
@@ -222,7 +222,7 @@ public class BrushStrokesScript : MonoBehaviour
             { false, true, true, true, false, true },
             { false, false, false, false, false, false },
             { false, false, false, false, false, false }
-        },
+        },// 31st symbol
         {
             { false, true, false, false, true, true },
             { true, true, true, true, false, true },
@@ -234,7 +234,7 @@ public class BrushStrokesScript : MonoBehaviour
             { false, true, true, false, false, true },
             { false, false, false, false, false, false },
             { false, false, false, false, false, false }
-        },
+        },// 31st symbol
         {
             { false, false, false, false, false, false },
             { false, true, false, false, true, false },
@@ -246,7 +246,7 @@ public class BrushStrokesScript : MonoBehaviour
             { true, false, true, true, false, true },
             { false, false, false, false, false, false },
             { false, false, false, false, false, false }
-        }
+        }// 35th symbol
     };
 
     private int btnSelected = 99;
@@ -539,7 +539,6 @@ public class BrushStrokesScript : MonoBehaviour
                 if (Bomb.GetSerialNumberLetters().Contains(indicator[0]) || Bomb.GetSerialNumberLetters().Contains(indicator[1]) || Bomb.GetSerialNumberLetters().Contains(indicator[2]))
                 {
                     indicatorAmount++;
-                    break;
                 }
             }
 
@@ -551,7 +550,6 @@ public class BrushStrokesScript : MonoBehaviour
                 if (Bomb.GetSerialNumberLetters().Contains(indicator[0]) || Bomb.GetSerialNumberLetters().Contains(indicator[1]) || Bomb.GetSerialNumberLetters().Contains(indicator[2]))
                 {
                     indicatorAmount++;
-                    break;
                 }
             }
 
@@ -576,6 +574,7 @@ public class BrushStrokesScript : MonoBehaviour
                 keyNum = 69;
             else
                 keyNum = 12;
+            keyNum++;
         }
 
         else if (colors[4] == 8) // if center point is purple...
@@ -715,16 +714,13 @@ public class BrushStrokesScript : MonoBehaviour
                 keyNum = 1;
         }
 
+        DebugMsg("The key number accumulated from the manual required is " + (keyNum) + ".");
+
         if (keyNum < 0)
             keyNum *= -1;
         keyNum %= 35;
 
-        if (keyNum == 28)
-        {
-            keyNum = 0;
-        }
-
-        DebugMsg("The key number is " + (keyNum + 1) + ".");
+        DebugMsg("The final key number is " + (keyNum + 1) + ".");
 
         if (colorblindActive)
         {
@@ -1135,6 +1131,8 @@ public class BrushStrokesScript : MonoBehaviour
                     }
                 }
                 StartCoroutine(Count());
+                yield return "strike";
+                yield return "solve";
             }
             yield break;
         }
