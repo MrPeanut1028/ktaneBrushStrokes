@@ -32,8 +32,8 @@ public class BrushStrokesScript : MonoBehaviour
 
     private bool[,] gaps = { { false, false, false, false, false, false },  // horizontal lines, in reading order
                              { false, false, false, false, false, false },  // vertical lines, in reading order
-                             { false, false, false, false, false, false },  // tl-br diagonals (there's only 4)
-                             { false, false, false, false, false, false }   // tr-bl diagonals (there's only 4) 
+                             { false, false, false, false, false, false },  // tl-br diagonals, in reading order (there's only 4)
+                             { false, false, false, false, false, false }   // tr-bl diagonals, in reading order (there's only 4) 
                            };
     private readonly static bool[,,] symbols =
     {
@@ -574,7 +574,6 @@ public class BrushStrokesScript : MonoBehaviour
                 keyNum = 69;
             else
                 keyNum = 12;
-            keyNum++;
         }
 
         else if (colors[4] == 8) // if center point is purple...
