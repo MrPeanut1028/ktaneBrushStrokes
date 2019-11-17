@@ -740,6 +740,8 @@ public class BrushStrokesScript : MonoBehaviour
             btnSelected = btnNum;
         else
         {
+            btnSelectables[btnNum].AddInteractionPunch();
+            Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, Module.transform);
             DebugMsg("You connected two points.");
 
             if (btnSelected == btnNum)
@@ -909,6 +911,7 @@ public class BrushStrokesScript : MonoBehaviour
 
     void Submit()
     {
+        if (solved) return;
         bool nopeThatsWrong = false;
         string firstPart;
         
@@ -1091,14 +1094,7 @@ public class BrushStrokesScript : MonoBehaviour
         if (Regex.IsMatch(command, @"^\s*colorblind\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
         {
             yield return null;
-            if (colorblindActive == true)
-            {
-                colorblindActive = false;
-            }
-            else
-            {
-                colorblindActive = true;
-            }
+            colorblindActive = !colorblindActive; // Consensed version by eliminating if-else statements
             if (colorblindActive)
             {
                 DebugMsg("Colorblind mode is active! Setting colorblind letters...");
