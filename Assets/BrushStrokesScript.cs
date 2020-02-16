@@ -558,22 +558,20 @@ public class BrushStrokesScript : MonoBehaviour
 
         else if (colors[4] == 7) // if center point is blue...
         {
-            if (Bomb.GetBatteryCount() == 1 && Bomb.GetBatteryHolderCount() == 1 && Bomb.IsIndicatorOff(Indicator.BOB) && Bomb.GetPortCount() == 1 && Bomb.IsPortPresent(Port.Serial))
+            if (Bomb.GetSerialNumberNumbers().First() == Bomb.GetSerialNumberNumbers().Last() && Bomb.GetBatteryCount() == 0)
                 keyNum = 1;
-            else if (Bomb.GetPortCount() % 2 == 0)
-                keyNum = 23;
-            else if (DateTime.Now.DayOfWeek == System.DayOfWeek.Saturday || DateTime.Now.DayOfWeek == System.DayOfWeek.Sunday)
+            else if (Bomb.GetIndicators().Contains(Indicator.CLR))
                 keyNum = 8;
-            else if (Bomb.GetSolvableModuleNames().Count % 2 == 0)
+            else if (Bomb.GetSerialNumberLetters().Contains("X") || Bomb.GetSerialNumberLetters().Contains("Y") || Bomb.GetSerialNumberLetters().Contains("Z"))
                 keyNum = 20;
-            else if (Bomb.GetSolvableModuleNames().Contains("Burglar Alarm"))
+            else if (Bomb.GetPortCount() > 4)
                 keyNum = 30;
-            else if (Bomb.GetSerialNumberNumbers().Last() % 2 == 1)
+            else if (Bomb.GetBatteryCount() == 0)
                 keyNum = 42;
-            else if (Bomb.GetOnIndicators().Count() == 3)
+            else if (Bomb.GetOnIndicators().Count() > Bomb.GetOffIndicators().Count())
                 keyNum = 69;
             else
-                keyNum = 12;
+                keyNum = 3;
         }
 
         else if (colors[4] == 8) // if center point is purple...
