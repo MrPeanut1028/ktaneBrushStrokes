@@ -560,9 +560,9 @@ public class BrushStrokesScript : MonoBehaviour
         {
             if (Bomb.GetSerialNumberNumbers().First() == Bomb.GetSerialNumberNumbers().Last() && Bomb.GetBatteryCount() == 0)
                 keyNum = 1;
-            else if (Bomb.GetIndicators().Contains(Indicator.CLR))
+            else if (Bomb.IsIndicatorPresent(Indicator.CLR))
                 keyNum = 8;
-            else if (Bomb.GetSerialNumberLetters().Contains("X") || Bomb.GetSerialNumberLetters().Contains("Y") || Bomb.GetSerialNumberLetters().Contains("Z"))
+            else if (Bomb.GetSerialNumber().Contains("X") || Bomb.GetSerialNumber().Contains("Y") || Bomb.GetSerialNumber().Contains("Z"))
                 keyNum = 20;
             else if (Bomb.GetPortCount() > 4)
                 keyNum = 30;
